@@ -1,0 +1,22 @@
+{
+  "name": "AngularTimeMachine",
+  "version": "0.0.1",
+  "description": "Angular Timesheeting",
+  "main": "server.js",
+  "dependencies": {
+    "grunt": "~0.4.2",
+    "grunt-contrib-jshint": "~0.7.2",
+    "grunt-contrib-sass": "~0.5.1",
+    "grunt-contrib-watch": "~0.5.3",
+    "moment": "~2.4.0",
+    "connect": "~2.11.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "test"
+  },
+  "repository": "",
+  "author": "Paul D'Ambra",
+  "license": "BSD",
+  "readmeFilename": "README.md"
+}
