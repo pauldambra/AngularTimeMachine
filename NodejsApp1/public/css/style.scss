@@ -2,6 +2,31 @@
 html, body {
     margin-top: 3em;
 }
+
+#focused-week {
+	margin-bottom:1em;
+	h4 {
+		display:inline-block;
+	}
+	button {
+		&.date-arrow {
+display: inline-block;
+background-image: url("/img/left-and-right.png");
+background-repeat: no-repeat;
+width: 37.5px;
+height: 35px;
+border: none;
+background-color: transparent;
+		}
+		&.arrow-left {
+			background-position:0 0;
+		}
+		&.arrow-right {
+			background-position:-36px 0;
+		}
+	}
+}
+
 .navbar {
 	h1 {
 		margin-left: 4em;
@@ -33,7 +58,7 @@ html, body {
 	text-align: center;
 	color:gray;
 	.dayHeader {
-		background-color: black;
+		background-color: pink;
 		color:white;
 		font-weight: bolder;
 		text-align: -webkit-center;

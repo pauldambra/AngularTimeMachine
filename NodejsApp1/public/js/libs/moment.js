@@ -637,7 +637,7 @@
             return this._weekdaysMin[m.day()];
         },
 
-        weekdaysParse : function (weekdayName) {
+        weekdaysParse : function (weekname) {
             var i, mom, regex;
 
             if (!this._weekdaysParse) {
@@ -652,7 +652,7 @@
                     this._weekdaysParse[i] = new RegExp(regex.replace('.', ''), 'i');
                 }
                 // test the regex
-                if (this._weekdaysParse[i].test(weekdayName)) {
+                if (this._weekdaysParse[i].test(weekname)) {
                     return i;
                 }
             }

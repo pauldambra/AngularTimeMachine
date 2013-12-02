@@ -10,10 +10,10 @@ module.exports = function(grunt) {
 		},
 		jshint: {
 		  options: {
-		  	ignores: ['public/js/libs/*.js', 'public/js/test/adapter.js'],
+		  	ignores: ['public/js/libs/*.js'],
 		  	'-W099':true
 		  },
-		  files: ['Gruntfile.js', 'js/**/*.js'],
+		  files: ['Gruntfile.js', 'public/js/**/*.js'],
 		},
 		watch: {
 			css: {
@@ -21,7 +21,7 @@ module.exports = function(grunt) {
 				tasks: ['sass']
 			},
 			scripts: {
-				files: ['js/**/*.js'],
+				files: ['public/js/**/*.js'],
 				tasks: ['jshint'],
 				options: {
 				  spawn: false,

@@ -16,21 +16,70 @@
             </div>
         </div>
     
-        <div class="row-fluid days" ng-controller="DaysCtrl">
-            <div class="span1"></div>
-            <div class="day span2" ng-repeat="day in days">
-                <div class="dayHeader">
-                    {{day.dayName}} {{day.date}}
-                </div>
-                <div class="dayPart">
-                    Morning <span><i class="icon-pencil"></i></span>
-                </div>
-                <div class="dayPart">
-                    Afternoon <span><i class="icon-pencil"></i></span>
+        <div ng-controller="DaysCtrl">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span6" id="focused-week">
+                    <button class="date-arrow arrow-left" ng-click="backAWeek()"></button>
+                    <h4>week commencing {{focusMonday.toDate() | date:dd-mm-yy}}</h4>
+                    <button class="date-arrow arrow-right" ng-click="forwardAWeek()"></button>
                 </div>
             </div>
-            <div class="span1"></div>
+            <div class="row-fluid days">
+                <div class="span1"></div>
+                <div class="day span2" ng-repeat="day in days" ng-cloak>
+                    <div class="dayHeader">
+                        {{day.name}} {{day.date}}
+                    </div>
+                    <div class="dayPart" ng-click="open(day, 'am')">
+                        Morning <span><i class="icon-pencil"></i></span>
+                    </div>
+                    <div class="dayPart" ng-click="open(day, 'pm')">
+                        Afternoon <span><i class="icon-pencil"></i></span>
+                    </div>
+                </div>
+                <div class="span1"></div>
+            </div>
         </div>
+        
+        <div>
+            <script type="text/ng-template" id="dayModalTemplate.html">
+        <div class="modal-header">
+            <h3>{{modalDay.name}} {{modalDayPart}}</h3>
+        </div>
+        <div class="modal-body">
+            <div ng-controller="TimepickerCtrl">
+                <div ng-model="start" 
+                     ng-change="changed()" 
+                     class="well well-small" 
+                     style="display:inline-block;">
+                        <p><strong>Start</strong></p>
+                        <timepicker 
+                            hour-step="hstep" minute-step="mstep" 
+                            show-meridian="ismeridian">
+                        </timepicker>
+                </div>
+                <div ng-model="finish" 
+                     ng-change="changed()" 
+                     class="well well-small" 
+                     style="display:inline-block;">
+                        <p><strong>Finish</strong></p>
+                        <timepicker 
+                            hour-step="hstep" minute-step="mstep" 
+                            show-meridian="ismeridian">
+                        </timepicker>
+                </div>
+                <h3>{{difference}} hours</h3>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" ng-click="ok()">OK</button>
+            <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+        </div>
+    </script>
+        </div>
+        
+
         <!-- <script type="text/x-handlebars" data-template-name="index">
   //   <div class="row days">
   //     {{#each day in model.days}}
@@ -42,7 +91,7 @@
         <!-- <script type="text/x-handlebars" data-template-name="_day">
   //   <div class="day col-xs-2">
   //     <div class="dayHeader">
-  //       {{day.dayName}} {{day.date}}
+  //       {{day.name}} {{day.date}}
   //     </div>
   //     <div class="dayPart">
   //       Morning <span class="glyphicon glyphicon-pencil"></span>
@@ -59,7 +108,8 @@
   <script src="js/libs/bootstrap.js"></script>
   <script src="js/libs/handlebars-1.0.0.js"></script>
   <script src="js/libs/angular.js"></script>
-  <script src="js/libs/ui-bootstrap-tpls-0.7.0.js"></script>
+    <script src="js/libs/ui-bootstrap-tpls-0.7.0.js"></script>
+    <script src="js/libs/angular-local-storage.js"></script>
   <script src="js/days.js"></script>
 
 </body>
