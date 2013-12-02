@@ -4,13 +4,13 @@ module.exports = function(grunt) {
 		sass: {
 			dist: {
 				files: {
-					'css/style.css' : 'css/style.scss'
+					'public/css/style.css' : 'public/css/style.scss'
 				}
 			}
 		},
 		jshint: {
 		  options: {
-		  	ignores: ['js/libs/*.js', 'js/test/adapter.js'],
+		  	ignores: ['public/js/libs/*.js', 'public/js/test/adapter.js'],
 		  	'-W099':true
 		  },
 		  files: ['Gruntfile.js', 'js/**/*.js'],
