@@ -1,17 +1,21 @@
 window.timeMachine = angular.module('timeMachine', ['ui.bootstrap', 'DayStorage']);
 
 function DaysCtrl($scope,  $modal, dayStorage) {
-    $scope.focusMonday = $scope.focusMonday || moment().day('monday');
+
+    var setFocusMonday = function(focus) {
+        $scope.focusMonday = focus;
+        $scope.days = dayStorage.getWeek(focus).days;
+    }
+
+    setFocusMonday($scope.focusMonday || moment().day('monday'));
 
     $scope.forwardAWeek = function() {
-        $scope.focusMonday = $scope.focusMonday.add('day', 7);
+        setFocusMonday($scope.focusMonday.add('day', 7));
     };
     
     $scope.backAWeek = function() {
-        $scope.focusMonday = $scope.focusMonday.add('day', -7);
+        setFocusMonday($scope.focusMonday.add('day', -7));
     };
-
-    $scope.days = dayStorage.dayLoader($scope.focusMonday).days;
 
     $scope.openModal = function() {
         $scope.dayModal = true;

@@ -1,13 +1,8 @@
 var dayStorage = angular.module('DayStorage', ['LocalStorageModule']);
 dayStorage.factory('dayStorage', function($log) {
 
-    var dayLoader = function(focusMonday) {
-        $log.info(focusMonday);
-        var monday = moment(focusMonday);
-        var tuesday = moment(focusMonday).add('d', 1);
-        $log.info(monday);
-        $log.info(tuesday);
-
+    var getWeek = function(focusMonday) {
+        $log.info('loading days for ' + moment());
         return {
             days : [
                 {
@@ -33,5 +28,5 @@ dayStorage.factory('dayStorage', function($log) {
             ]};
     };
 
-    return {dayLoader: dayLoader};
+    return {getWeek: getWeek};
 });
