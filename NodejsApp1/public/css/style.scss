@@ -39,7 +39,7 @@ html, body {
 	}
 	.navbar-inner {
 		a.brand {
-			margin-left: 0;
+			margin-left: 17em;
 		}
 	}
 }
@@ -53,22 +53,29 @@ html, body {
 	margin-left: auto;
 	margin-right: auto;
 }
+.white-on-black {
+  background-color: black;
+  color:white;
+  font-weight: bolder;
+  text-align: -webkit-center;
+  height: 2em;
+  line-height: 2em;
+}
+.week-total {
+  @extend .white-on-black;
+  border-radius: 4px;
+}
 .day {
 	border: solid 1px black;
 	border-radius: 4px;
 	padding: 0px;
-	height: 5em;
+	height: 7em;
 	background: -webkit-radial-gradient(circle, #D6D6D6, #FFFFFF);
 	margin-right:0.5em;
 	text-align: center;
 	color:gray;
-	.dayHeader {
-		background-color: black;
-		color:white;
-		font-weight: bolder;
-		text-align: -webkit-center;
-		height: 2em;
-		line-height: 2em;
+	.dayHeader, .dayFooter {
+      @extend .white-on-black;
 	}
 	&:last-child{
 		margin-right:0;
