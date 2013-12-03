@@ -3,30 +3,35 @@ dayStorage.factory('dayStorage', function($log) {
 
     var dayLoader = function(focusMonday) {
         $log.info(focusMonday);
+        var monday = moment(focusMonday);
+        var tuesday = moment(focusMonday).add('d', 1);
+        $log.info(monday);
+        $log.info(tuesday);
+
         return {
             days : [
                 {
                     name: 'Monday',
-                    dayDate: moment()
+                    date: moment(focusMonday).toDate()
                 },
                 {
                     name: 'Tuesday',
-                    dayDate: moment()
+                    date: moment(focusMonday).add('d', 1).toDate()
                 },
                 {
                     name: 'Wednesday',
-                    dayDate: moment()
+                    date: moment(focusMonday).add('d', 2).toDate()
                 },
                 {
                     name: 'Thursday',
-                    dayDate: moment()
+                    date: moment(focusMonday).add('d', 3).toDate()
                 },
                 {
                     name: 'Friday',
-                    dayDate: moment()
+                    date: moment(focusMonday).add('d', 4).toDate()
                 }
             ]};
-    }
+    };
 
     return {dayLoader: dayLoader};
 });

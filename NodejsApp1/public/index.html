@@ -28,7 +28,7 @@
                 <div class="span1"></div>
                 <div class="day span2" ng-repeat="day in days" ng-cloak>
                     <div class="dayHeader">
-                        {{day.name}} {{day.date}}
+                        {{day.date | date:'EEE dd'}}
                     </div>
                     <div class="dayPart" ng-click="open(day, 'am')">
                         Morning <span><i class="icon-pencil"></i></span>
