@@ -1,6 +1,6 @@
-angular.module('timeMachine', ['ui.bootstrap', 'LocalStorageModule']);
+window.timeMachine = angular.module('timeMachine', ['ui.bootstrap', 'DayStorage']);
 
-function DaysCtrl($scope,  $modal, localStorageService) {
+function DaysCtrl($scope,  $modal, dayStorage) {
     $scope.focusMonday = $scope.focusMonday || moment().day('monday');
 
     $scope.forwardAWeek = function() {
@@ -11,28 +11,7 @@ function DaysCtrl($scope,  $modal, localStorageService) {
         $scope.focusMonday = $scope.focusMonday.add('day', -7);
     };
 
-    $scope.days = [
-        {
-            name: 'Monday',
-            dayDate: moment()
-        },
-        {
-            name: 'Tuesday',
-            dayDate: moment()
-        },
-        {
-            name: 'Wednesday',
-            dayDate: moment()
-        },
-        {
-            name: 'Thursday',
-            dayDate: moment()
-        },
-        {
-            name: 'Friday',
-            dayDate: moment()
-        }
-    ];
+    $scope.days = dayStorage.dayLoader($scope.focusMonday).days;
 
     $scope.openModal = function() {
         $scope.dayModal = true;
