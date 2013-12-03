@@ -10,26 +10,28 @@ html, body {
 	}
 	button {
 		&.date-arrow {
-display: inline-block;
-background-image: url("/img/left-and-right.png");
-background-repeat: no-repeat;
-width: 37.5px;
-height: 35px;
-border: none;
-background-color: transparent;
+			display: inline-block;
+			background-image: url("/img/left-and-right.png");
+			background-repeat: no-repeat;
+			width: 37.5px;
+			height: 35px;
+			border: none;
+			background-color: transparent;
 		}
 		&.arrow-left {
 			background-position:0 0;
+			margin-right:0.5em;
 		}
 		&.arrow-right {
 			background-position:-36px 0;
+			margin-left:0.5em;
 		}
 	}
 }
 
 .navbar {
 	h1 {
-		margin-left: 4em;
+		margin-left: 5em;
 		color:white;
 	}
 	.navbar-inner {
@@ -58,7 +60,7 @@ background-color: transparent;
 	text-align: center;
 	color:gray;
 	.dayHeader {
-		background-color: pink;
+		background-color: black;
 		color:white;
 		font-weight: bolder;
 		text-align: -webkit-center;

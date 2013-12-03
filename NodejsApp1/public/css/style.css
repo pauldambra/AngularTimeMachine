@@ -14,12 +14,14 @@ html, body {
     border: none;
     background-color: transparent; }
   #focused-week button.arrow-left {
-    background-position: 0 0; }
+    background-position: 0 0;
+    margin-right: 0.5em; }
   #focused-week button.arrow-right {
-    background-position: -36px 0; }
+    background-position: -36px 0;
+    margin-left: 0.5em; }
 
 .navbar h1 {
-  margin-left: 4em;
+  margin-left: 5em;
   color: white; }
 .navbar .navbar-inner a.brand {
   margin-left: 0; }
@@ -42,7 +44,7 @@ html, body {
   text-align: center;
   color: gray; }
   .day .dayHeader {
-    background-color: pink;
+    background-color: black;
     color: white;
     font-weight: bolder;
     text-align: -webkit-center;
