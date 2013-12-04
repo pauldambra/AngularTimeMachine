@@ -69,13 +69,17 @@ html, body {
 	border: solid 1px black;
 	border-radius: 4px;
 	padding: 0px;
-	height: 7em;
 	background: -webkit-radial-gradient(circle, #D6D6D6, #FFFFFF);
 	margin-right:0.5em;
 	text-align: center;
 	color:gray;
 	.dayHeader, .dayFooter {
       @extend .white-on-black;
+      i {
+        margin-top:3px;
+        margin-right:3px;
+        cursor: pointer;
+      }
 	}
 	&:last-child{
 		margin-right:0;

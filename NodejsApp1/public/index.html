@@ -29,12 +29,10 @@
                 <div class="day span2" ng-repeat="day in days" ng-cloak>
                     <div class="dayHeader">
                         {{day.date | date:'EEE dd'}}
+                        <i class="icon-plus-sign icon-white pull-right" ng-click="addDayPart(day)"></i>
                     </div>
-                    <div class="dayPart" ng-click="open(day, 'morning')">
-                        {{dayPartText(day,'morning')}}
-                    </div>
-                    <div class="dayPart" ng-click="open(day, 'afternoon')">
-                        {{dayPartText(day,'afternoon')}}
+                    <div class="dayPart" ng-repeat="part in day.parts" ng-click="editDayPart(day, part)">
+                        {{dayPartText(part)}}
                     </div>
                     <div class="dayFooter">
                         {{dayTotal(day)}}
@@ -60,7 +58,7 @@
         </div>
         <div class="modal-body">
             <div ng-controller="TimepickerCtrl">
-                <div ng-model="start" 
+                <div ng-model="modalDayPart.start"
                      ng-change="changed()" 
                      class="well well-small" 
                      style="display:inline-block;">
@@ -70,7 +68,7 @@
                             show-meridian="ismeridian">
                         </timepicker>
                 </div>
-                <div ng-model="finish" 
+                <div ng-model="modalDayPart.finish"
                      ng-change="changed()" 
                      class="well well-small" 
                      style="display:inline-block;">
@@ -80,6 +78,7 @@
                             show-meridian="ismeridian">
                         </timepicker>
                 </div>
+                <input ng-model="modalDayPart.projectName" ng-change="changed()" type="text" placeholder="Project Name or work done"/>
                 <h3>{{timeDifference}} hours</h3>
             </div>
         </div>

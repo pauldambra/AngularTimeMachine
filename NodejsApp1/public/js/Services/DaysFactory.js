@@ -31,6 +31,7 @@ dayStorage.factory('dayStorage', function($log, localStorageService) {
 Day = function(dayDate) {
     return   {
         date: dayDate.hours(0).minutes(0).seconds(0).milliseconds(0).toDate(),
+        parts: [],
         morning: {
             start:moment(dayDate.hours(0).minutes(0).seconds(0).milliseconds(0)),
             finish:moment(dayDate.hours(0).minutes(0).seconds(0).milliseconds(0))
@@ -41,3 +42,9 @@ Day = function(dayDate) {
         }
     }
 };
+
+Part = function(start, finish) {
+    this.start = moment(start).hours(0).minutes(0).seconds(0).milliseconds(0);
+    this.finish = moment(finish).hours(0).minutes(0).seconds(0).milliseconds(0);
+    this.projectName = "";
+}

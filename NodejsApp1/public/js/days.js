@@ -24,22 +24,19 @@ function DaysCtrl($scope,  $modal, dayStorage) {
         $scope.dayModal = false;
     };
 
-    $scope.dayPartText = function (day, dayPart) {
-        var calculateTimeDifference = timeMachine.calculateTimeDifference(day[dayPart].start, day[dayPart].finish);
-        return calculateTimeDifference === -1
-            ? dayPart
-            : calculateTimeDifference + ' hours';
+    $scope.dayPartText = function (dayPart) {
+        var timeDifference = timeMachine.calculateTimeDifference(dayPart.start, dayPart.finish);
+        return timeDifference + ' hours';
     };
 
     function calculateDayTotal(day) {
-        var morning = timeMachine.calculateTimeDifference(day.morning.start, day.morning.finish);
-        var afternoon = timeMachine.calculateTimeDifference(day.afternoon.start, day.afternoon.finish);
         var total = 0;
-        if (morning !== -1) {
-            total += morning;
-        }
-        if (afternoon !== -1) {
-            total += afternoon;
+        for(var i = 0, len = day.parts.length; i<len; i++) {
+            var part = day.parts[i];
+            var diff = timeMachine.calculateTimeDifference(part.start, part.finish);
+            if (diff > -1) {
+                total += diff;
+            }
         }
         return total;
     }
@@ -57,13 +54,32 @@ function DaysCtrl($scope,  $modal, dayStorage) {
         return total;
     };
 
-    $scope.open = function (targetDay, targetDayPart) {
+    $scope.addDayPart = function (targetDay) {
         $modal.open({
             templateUrl: 'dayModalTemplate.html',
             controller: ModalInstanceCtrl,
             resolve: {
                 modalDayPart: function() {
-                    return targetDayPart;
+                    return null;
+                },
+                modalDay: function() {
+                    return targetDay;
+                }
+            }
+        });
+
+//    modalInstance.result.then(function (selectedItem) {
+//      $scope.selected = selectedItem;
+//    });
+    };
+
+    $scope.editDayPart = function (targetDay, targetDayPart) {
+        $modal.open({
+            templateUrl: 'dayModalTemplate.html',
+            controller: ModalInstanceCtrl,
+            resolve: {
+                modalDayPart: function() {
+                    return targetDayPart ;
                 },
                 modalDay: function() {
                     return targetDay;
@@ -90,16 +106,18 @@ var ModalInstanceCtrl = function ($scope, $modalInstance, modalDay, modalDayPart
 };
 
 var TimepickerCtrl = function ($scope, $log, dayStorage) {
-    var modalDay = $scope.modalDay;
-    var modalDayPart = $scope.modalDayPart;
+//    var modalDay = $scope.modalDay;
+//    var modalDayPart = $scope.modalDayPart;
 
-    if (!modalDay.hasOwnProperty(modalDayPart)) {
-        $log.warn('the day does not have a ' + modalDayPart + ' property');
-        return;
+    if ($scope.modalDayPart === null) {
+        $scope.modalDayPart = new Part($scope.modalDay.date, $scope.modalDay.date);
+//        var modalDayPart = $scope.modalDayPart;
+        $scope.modalDay.parts.push($scope.modalDayPart);
     }
-
-    $scope.start = modalDay[modalDayPart].start;
-    $scope.finish = modalDay[modalDayPart].finish;
+//
+//    $scope.start = $scope.modalDayPart.start;
+//    $scope.finish = $scope.modalDayPart.finish;
+//    $scope.projectName = $scope.modalDayPart.projectName;
 
     $scope.hstep = 1;
     $scope.mstep = 15;
@@ -109,15 +127,17 @@ var TimepickerCtrl = function ($scope, $log, dayStorage) {
         $scope.ismeridian = ! $scope.ismeridian;
     };
 
-    $scope.timeDifference =  timeMachine.calculateTimeDifference($scope.start, $scope.finish);
+    $scope.timeDifference =  timeMachine.calculateTimeDifference($scope.modalDayPart.start, $scope.modalDayPart.finish);
 
     $scope.changed = function () {
         if ($scope.finish < $scope.start) {
             alert("are you a time traveller?! finish should be after start!");
             $scope.difference = '?!!?!';
         } else {
-            $scope.modalDay[$scope.modalDayPart].start = moment($scope.start);
-            $scope.modalDay[$scope.modalDayPart].finish = moment($scope.finish);
+//            $scope.modalDayPart.start = moment($scope.start);
+//            $scope.modalDayPart.finish = moment($scope.finish);
+//            $scope.modalDayPart.projectName = $scope.projectName;
+            $scope.timeDifference = timeMachine.calculateTimeDifference($scope.modalDayPart.start, $scope.modalDayPart.finish);
             dayStorage.saveDay($scope.modalDay)
         }
     };
