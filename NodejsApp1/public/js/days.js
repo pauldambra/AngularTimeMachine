@@ -106,18 +106,10 @@ var ModalInstanceCtrl = function ($scope, $modalInstance, modalDay, modalDayPart
 };
 
 var TimepickerCtrl = function ($scope, $log, dayStorage) {
-//    var modalDay = $scope.modalDay;
-//    var modalDayPart = $scope.modalDayPart;
-
     if ($scope.modalDayPart === null) {
         $scope.modalDayPart = new Part($scope.modalDay.date, $scope.modalDay.date);
-//        var modalDayPart = $scope.modalDayPart;
         $scope.modalDay.parts.push($scope.modalDayPart);
     }
-//
-//    $scope.start = $scope.modalDayPart.start;
-//    $scope.finish = $scope.modalDayPart.finish;
-//    $scope.projectName = $scope.modalDayPart.projectName;
 
     $scope.hstep = 1;
     $scope.mstep = 15;
@@ -134,9 +126,6 @@ var TimepickerCtrl = function ($scope, $log, dayStorage) {
             alert("are you a time traveller?! finish should be after start!");
             $scope.difference = '?!!?!';
         } else {
-//            $scope.modalDayPart.start = moment($scope.start);
-//            $scope.modalDayPart.finish = moment($scope.finish);
-//            $scope.modalDayPart.projectName = $scope.projectName;
             $scope.timeDifference = timeMachine.calculateTimeDifference($scope.modalDayPart.start, $scope.modalDayPart.finish);
             dayStorage.saveDay($scope.modalDay)
         }
