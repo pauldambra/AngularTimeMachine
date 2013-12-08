@@ -61,10 +61,7 @@ html, body {
   height: 2em;
   line-height: 2em;
 }
-.week-total {
-  @extend .white-on-black;
-  border-radius: 4px;
-}
+
 .day {
 	border: solid 1px black;
 	border-radius: 4px;
@@ -73,7 +70,7 @@ html, body {
 	margin-right:0.5em;
 	text-align: center;
 	color:gray;
-	.dayHeader, .dayFooter {
+	header, footer {
       @extend .white-on-black;
       i {
         margin-top:3px;

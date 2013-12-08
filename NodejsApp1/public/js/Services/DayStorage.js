@@ -1,5 +1,5 @@
-var dayStorage = angular.module('DayStorage', ['LocalStorageModule']);
-dayStorage.factory('dayStorage', function($log, localStorageService) {
+angular.module('DayStorage', ['LocalStorageModule'])
+    .factory('dayStorage', function($log, localStorageService) {
 
     var getWeek = function(focusMonday) {
         $log.info('loading days for ' + moment());

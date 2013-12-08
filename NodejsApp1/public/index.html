@@ -27,77 +27,48 @@
             <div class="row-fluid days">
                 <div class="span1"></div>
                 <div class="day span2" ng-repeat="day in days" ng-cloak>
-                    <div class="dayHeader">
+                    <header>
                         {{day.date | date:'EEE dd'}}
                         <i class="icon-plus-sign icon-white pull-right" ng-click="addDayPart(day)"></i>
-                    </div>
+                    </header>
                     <div class="dayPart" ng-repeat="part in day.parts" ng-click="editDayPart(day, part)">
                         {{dayPartText(part)}}
                     </div>
-                    <div class="dayFooter">
+                    <footer>
                         {{dayTotal(day)}}
-                    </div>
+                    </footer>
                 </div>
                 <div class="span1"></div>
             </div>
             <div class="row-fluid days">
                 <div class="span8"></div>
-                <div class="span3">
-                    <div class="week-total">
-                        Week Total is: {{weekTotal()}} hours
+                <div class="span3 day">
+                    <header>
+                        Week Summary
+                    </header>
+                    <div ng-repeat="item in weekSummary">
+                        <strong>{{item.project}}: </strong>{{item.total}} hours
                     </div>
+                    <footer>
+                        {{weekTotal()}} hours
+                    </footer>
                 </div>
                 <div class="span1"></div>
             </div>
-        </div>
-        
-        <div>
-            <script type="text/ng-template" id="dayModalTemplate.html">
-        <div class="modal-header">
-            <h3>{{modalDay.date | date:'EEE dd MMM yy'}} {{modalDayPart}}</h3>
-        </div>
-        <div class="modal-body">
-            <div ng-controller="TimepickerCtrl">
-                <div ng-model="modalDayPart.start"
-                     ng-change="changed()" 
-                     class="well well-small" 
-                     style="display:inline-block;">
-                        <p><strong>Start</strong></p>
-                        <timepicker 
-                            hour-step="hstep" minute-step="mstep" 
-                            show-meridian="ismeridian">
-                        </timepicker>
-                </div>
-                <div ng-model="modalDayPart.finish"
-                     ng-change="changed()" 
-                     class="well well-small" 
-                     style="display:inline-block;">
-                        <p><strong>Finish</strong></p>
-                        <timepicker 
-                            hour-step="hstep" minute-step="mstep" 
-                            show-meridian="ismeridian">
-                        </timepicker>
-                </div>
-                <input ng-model="modalDayPart.projectName" ng-change="changed()" type="text" placeholder="Project Name or work done"/>
-                <h3>{{timeDifference}} hours</h3>
-            </div>
-        </div>
-        <div class="modal-footer">
-            <button class="btn btn-primary" ng-click="ok()">OK</button>
-            <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
-        </div>
-    </script>
         </div>
     </div>
 
   <script src="js/libs/jquery-1.9.1.js"></script>
   <script src="js/libs/moment.js"></script>
+    <script src="js/libs/underscore.js"></script>
   <script src="js/libs/bootstrap.js"></script>
   <script src="js/libs/handlebars-1.0.0.js"></script>
   <script src="js/libs/angular.js"></script>
     <script src="js/libs/ui-bootstrap-tpls-0.7.0.js"></script>
     <script src="js/libs/angular-local-storage.js"></script>
-    <script src="js/Services/DaysFactory.js"></script>
+    <script src="js/services/DayStorage.js"></script>
+    <script src="js/services/TimeDifference.js"></script>
+    <script src="js/services/DayUtilities.js"></script>
   <script src="js/days.js"></script>
 
 </body>

@@ -37,16 +37,13 @@ html, body {
   margin-left: auto;
   margin-right: auto; }
 
-.white-on-black, .week-total, .day .dayHeader, .day .dayFooter {
+.white-on-black, .day header, .day footer {
   background-color: black;
   color: white;
   font-weight: bolder;
   text-align: -webkit-center;
   height: 2em;
   line-height: 2em; }
-
-.week-total {
-  border-radius: 4px; }
 
 .day {
   border: solid 1px black;
@@ -56,7 +53,7 @@ html, body {
   margin-right: 0.5em;
   text-align: center;
   color: gray; }
-  .day .dayHeader i, .day .dayFooter i {
+  .day header i, .day footer i {
     margin-top: 3px;
     margin-right: 3px;
     cursor: pointer; }
