@@ -1,31 +1,17 @@
 window.timeMachine = angular.module('timeMachine',
-    ['ui.bootstrap', 'DayStorage', 'DayUtilities', 'TimeDifference']);
+    [
+      'ui.bootstrap',
+      'DayStorage',
+      'DayUtilities',
+      'TimeDifference',
+      'ProjectAggregator'
+    ]);
 
-function DaysCtrl($scope,  $modal, dayStorage, dayUtilities, timeDifference) {
-
-    $scope.weekSummary = [];
-
-    var updateProjectSummaries = function() {
-        var projects = _.groupBy(
-            _.flatten(_.map($scope.days, function(day) { return day.parts;})),
-            'projectName');
-        var projectSums = _.map(projects, function(value, key) {
-            var partsTotal = _.reduce(value, function(memo, part){
-                return memo + timeDifference.calculate(part.start, part.finish);
-            }, 0);
-            return {project:key, total:partsTotal};
-        });
-        console.log(projectSums);
-        $scope.weekSummary.length = 0;
-        $scope.weekSummary.concat(_.sortBy(projectSums, function(item) {
-            return item.project;
-        }));
-    };
-
+function DaysCtrl($scope,  $modal, dayStorage, dayUtilities, projectAggregator) {
     var setFocusMonday = function(focus) {
         $scope.focusMonday = focus.hours(0).minutes(0).seconds(0).milliseconds(0);
         $scope.days = dayStorage.getWeek(focus).days;
-        updateProjectSummaries();
+        $scope.weekSummary = projectAggregator.aggregate($scope.days);
     };
 
     setFocusMonday($scope.focusMonday || moment().day('monday'));
@@ -33,7 +19,7 @@ function DaysCtrl($scope,  $modal, dayStorage, dayUtilities, timeDifference) {
     $scope.forwardAWeek = function() {
         setFocusMonday($scope.focusMonday.add('day', 7));
     };
-    
+
     $scope.backAWeek = function() {
         setFocusMonday($scope.focusMonday.add('day', -7));
     };
@@ -71,7 +57,11 @@ function DaysCtrl($scope,  $modal, dayStorage, dayUtilities, timeDifference) {
             }
         });
 
-        modalInstance.result.then(updateProjectSummaries());
+        modalInstance.result.then(
+          function() {
+            $scope.weekSummary = projectAggregator.aggregate($scope.days);
+          }
+        );
     };
 
     $scope.editDayPart = function (targetDay, targetDayPart) {
@@ -88,14 +78,19 @@ function DaysCtrl($scope,  $modal, dayStorage, dayUtilities, timeDifference) {
             }
         });
 
-    modalInstance.result.then(updateProjectSummaries());
+      modalInstance.result.then(
+        function() {
+          $scope.weekSummary = projectAggregator.aggregate($scope.days);
+        }
+      );
     };
 }
 
-var ModalInstanceCtrl = function ($scope, $modalInstance, modalDay, modalDayPart) {
+var ModalInstanceCtrl = function ($scope, $modalInstance, dayStorage, modalDay, modalDayPart) {
     $scope.modalDay = modalDay;
     $scope.modalDayPart = modalDayPart;
     $scope.ok = function () {
+        dayStorage.saveDay($scope.modalDay)
         $modalInstance.close();
     };
 
@@ -104,7 +99,7 @@ var ModalInstanceCtrl = function ($scope, $modalInstance, modalDay, modalDayPart
   };
 };
 
-var TimepickerCtrl = function ($scope, $log, dayStorage, dayUtilities) {
+var TimepickerCtrl = function ($scope, $log, dayUtilities) {
     if ($scope.modalDayPart === null) {
         $scope.modalDayPart = new Part($scope.modalDay.date, $scope.modalDay.date);
         $scope.modalDay.parts.push($scope.modalDayPart);
@@ -130,7 +125,6 @@ var TimepickerCtrl = function ($scope, $log, dayStorage, dayUtilities) {
             $scope.timeDifference = function() {
                 return dayUtilities.dayPartLength($scope.modalDayPart);
             }();
-            dayStorage.saveDay($scope.modalDay)
         }
     };
 };
