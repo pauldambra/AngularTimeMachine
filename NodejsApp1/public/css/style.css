@@ -27,7 +27,7 @@ html, body {
   margin-left: 5em;
   color: white; }
 .navbar .navbar-inner a.brand {
-  margin-left: 17em; }
+  margin-left: em; }
 
 #main .row {
   margin-left: 4em;
