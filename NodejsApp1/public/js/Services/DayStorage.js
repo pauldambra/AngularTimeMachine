@@ -19,9 +19,7 @@ angular.module('DayStorage', ['LocalStorageModule'])
     };
 
     var saveDay = function(day) {
-
         var dayDate = moment(day.date);
-        $log.info('saving '+ dayDate.unix());
         localStorageService.add(dayDate.unix(),day);
     };
 

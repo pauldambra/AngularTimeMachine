@@ -4,7 +4,8 @@ window.timeMachine = angular.module('timeMachine',
       'DayStorage',
       'DayUtilities',
       'TimeDifference',
-      'ProjectAggregator'
+      'ProjectAggregator',
+        'ProjectNameStorage'
     ]);
 
 function DaysCtrl($scope,  $modal, dayStorage, dayUtilities, projectAggregator) {
@@ -94,17 +95,21 @@ function DaysCtrl($scope,  $modal, dayStorage, dayUtilities, projectAggregator) 
     };
 }
 
-var ModalInstanceCtrl = function ($scope, $modalInstance, dayStorage, modalDay, modalDayPart) {
+var ModalInstanceCtrl = function ($scope, $modalInstance, dayStorage, modalDay, modalDayPart, projectNameStorage) {
     $scope.modalDay = modalDay;
     $scope.modalDayPart = modalDayPart;
     $scope.ok = function () {
         dayStorage.saveDay($scope.modalDay);
+        projectNameStorage.addOrIgnoreNames(_.pluck($scope.modalDay.parts, 'projectName'));
         $modalInstance.close();
     };
 
     $scope.cancel = function () {
     $modalInstance.dismiss('cancel');
   };
+  $scope.searchProjectNames = function(term) {
+        return projectNameStorage.getFilteredNames(term);
+    }
 };
 
 var TimepickerCtrl = function ($scope, $log, dayUtilities) {
