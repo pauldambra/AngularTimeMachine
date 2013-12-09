@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TimeMachine</title>
+    <link rel="stylesheet" href="css/font-awesome.css">
   <link rel="stylesheet" href="css/bootstrap-responsive.css">
   <link rel="stylesheet" href="css/bootstrap.css">
   <link rel="stylesheet" href="css/style.css">
@@ -29,10 +30,11 @@
                 <div class="day span2" ng-repeat="day in days" ng-cloak>
                     <header>
                         {{day.date | date:'EEE dd'}}
-                        <i class="icon-plus-sign icon-white pull-right" ng-click="addDayPart(day)"></i>
+                        <i class="fa fa-plus-circle pull-right" ng-click="addDayPart(day)"></i>
                     </header>
                     <div class="dayPart" ng-repeat="part in day.parts" ng-click="editDayPart(day, part)">
                         {{dayPartText(part)}}
+                        <i class="fa fa-trash-o pull-right" ng-click="deleteDayPart(day, part)"></i>
                     </div>
                     <footer>
                         {{dayTotal(day)}}

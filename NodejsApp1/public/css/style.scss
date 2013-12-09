@@ -72,12 +72,23 @@ html, body {
 	color:gray;
 	header, footer {
       @extend .white-on-black;
-      i {
-        margin-top:3px;
-        margin-right:3px;
-        cursor: pointer;
-      }
 	}
+    i {
+      margin-top:3px;
+      margin-right:3px;
+      cursor: pointer;
+    }
+    .fa-plus-circle {
+      &:hover {
+        color:paleturquoise;
+      }
+    }
+    .fa-trash-o {
+      margin-right:4px;
+      &:hover {
+        color:red;
+      }
+    }
 	&:last-child{
 		margin-right:0;
 	}

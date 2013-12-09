@@ -43,6 +43,14 @@ function DaysCtrl($scope,  $modal, dayStorage, dayUtilities, projectAggregator) 
         return dayUtilities.weekTotal($scope.days);
     }
 
+    $scope.deleteDayPart = function(day, part) {
+        var dayIndex = $scope.days.indexOf(day);
+        var partIndex = $scope.days[dayIndex].parts.indexOf(part);
+        $scope.days[dayIndex].parts.splice(partIndex,1);
+        dayStorage.saveDay($scope.days[dayIndex]);
+        $scope.weekSummary = projectAggregator.aggregate($scope.days);
+    };
+
     $scope.addDayPart = function (targetDay) {
         var modalInstance = $modal.open({
             templateUrl: 'dayModalTemplate.html',
@@ -90,7 +98,7 @@ var ModalInstanceCtrl = function ($scope, $modalInstance, dayStorage, modalDay, 
     $scope.modalDay = modalDay;
     $scope.modalDayPart = modalDayPart;
     $scope.ok = function () {
-        dayStorage.saveDay($scope.modalDay)
+        dayStorage.saveDay($scope.modalDay);
         $modalInstance.close();
     };
 
