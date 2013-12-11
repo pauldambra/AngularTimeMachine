@@ -27,7 +27,7 @@ html, body {
   margin-left: 5em;
   color: white; }
 .navbar .navbar-inner a.brand {
-  margin-left: 17em; }
+  margin-left: em; }
 
 #main .row {
   margin-left: 4em;
@@ -53,10 +53,16 @@ html, body {
   margin-right: 0.5em;
   text-align: center;
   color: gray; }
-  .day header i, .day footer i {
+  .day i {
     margin-top: 3px;
     margin-right: 3px;
     cursor: pointer; }
+  .day .fa-plus-circle:hover {
+    color: paleturquoise; }
+  .day .fa-trash-o {
+    margin-right: 4px; }
+    .day .fa-trash-o:hover {
+      color: red; }
   .day:last-child {
     margin-right: 0; }
   .day:first-child {

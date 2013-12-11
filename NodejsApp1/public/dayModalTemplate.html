@@ -23,8 +23,11 @@
                     show-meridian="ismeridian">
             </timepicker>
         </div>
-        <input ng-model="modalDayPart.projectName" ng-change="changed()" type="text"
-               placeholder="Project Name or work done"/>
+        <input ng-model="modalDayPart.projectName"
+               ng-change="changed()"
+               type="text"
+               placeholder="Project Name or work done"
+               typeahead-wait-ms="300" typeahead="result for result in searchProjectNames($viewValue)" />
 
         <h3>{{timeDifference}} hours</h3>
     </div>
