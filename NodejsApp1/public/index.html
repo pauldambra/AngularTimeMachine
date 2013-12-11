@@ -32,10 +32,10 @@
                         <i class="icon-plus-sign icon-white pull-right" ng-click="addDayPart(day)"></i>
                     </header>
                     <div class="dayPart" ng-repeat="part in day.parts" ng-click="editDayPart(day, part)">
-                        {{dayPartText(part)}}
+                        {{dayPartText(part)}} hours
                     </div>
                     <footer>
-                        {{dayTotal(day)}}
+                        {{dayTotal(day)}} hours
                     </footer>
                 </div>
                 <div class="span1"></div>

@@ -19,11 +19,11 @@ angular.module('DayUtilities', ['TimeDifference'])
         return {
             dayPartLength: function(dayPart) {
                 var timeDifference = calculateDifference(dayPart);
-                return timeDifference + ' hours';
+                return timeDifference;
             },
             dayTotal: function(day) {
                 var total = calculateDayTotal(day);
-                return total + ' hours';
+                return total;
             },
             weekTotal: function(days) {
                 var total = 0;
