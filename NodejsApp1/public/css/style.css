@@ -2,7 +2,7 @@
   display: none !important; }
 
 html, body {
-  margin-top: 3em; }
+  margin-top: 2em; }
 
 #focused-week {
   margin-bottom: 1em; }
@@ -27,7 +27,7 @@ html, body {
   margin-left: 5em;
   color: white; }
 .navbar .navbar-inner a.brand {
-  margin-left: em; }
+  margin-left: 9em; }
 
 #main .row {
   margin-left: 4em;
@@ -53,23 +53,43 @@ html, body {
   margin-right: 0.5em;
   text-align: center;
   color: gray; }
-  .day i {
-    margin-top: 3px;
-    margin-right: 3px;
+  .day .fa-plus-circle {
+    margin-top: 6px;
+    margin-right: 6px;
     cursor: pointer; }
-  .day .fa-plus-circle:hover {
-    color: paleturquoise; }
-  .day .fa-trash-o {
-    margin-right: 4px; }
-    .day .fa-trash-o:hover {
-      color: red; }
+    .day .fa-plus-circle:hover {
+      color: paleturquoise; }
   .day:last-child {
     margin-right: 0; }
   .day:first-child {
     margin-left: 7em; }
   .day .dayPart {
     min-height: 1.4em; }
+    .day .dayPart .fa {
+      visibility: hidden;
+      margin-top: 3px;
+      margin-right: 3px;
+      cursor: pointer; }
     .day .dayPart:hover {
       background-color: black;
       color: white;
       cursor: pointer; }
+      .day .dayPart:hover .fa {
+        visibility: visible; }
+    .day .dayPart .fa-trash-o {
+      margin-right: 4px; }
+      .day .dayPart .fa-trash-o:hover {
+        color: red; }
+    .day .dayPart .fa-pencil-square-o {
+      margin-right: 4px; }
+      .day .dayPart .fa-pencil-square-o:hover {
+        color: paleturquoise; }
+
+.week-summary {
+  margin-top: 1em; }
+  .week-summary .fa {
+    margin-top: 6px;
+    margin-right: 6px;
+    cursor: pointer; }
+    .week-summary .fa:hover {
+      color: paleturquoise; }

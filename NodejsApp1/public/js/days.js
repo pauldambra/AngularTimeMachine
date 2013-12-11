@@ -5,7 +5,8 @@ window.timeMachine = angular.module('timeMachine',
       'DayUtilities',
       'TimeDifference',
       'ProjectAggregator',
-        'ProjectNameStorage'
+       'ProjectNameStorage',
+      'timeMachine.filters'
     ]);
 
 function DaysCtrl($scope,  $modal, dayStorage, dayUtilities, projectAggregator) {
