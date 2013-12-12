@@ -2,8 +2,11 @@
   display: none !important;
 }
 
-html, body {
-    margin-top: 2em;
+body {
+    margin-top: 1em;
+  @media screen and (max-width: 768px) {
+    padding-top: 0;
+  }
 }
 
 #focused-week {
@@ -43,16 +46,7 @@ html, body {
 		}
 	}
 }
-#main {
-	.row {
-		margin-left: 4em;
-		margin-right: 0;
-	}
-}
-.days {
-	margin-left: auto;
-	margin-right: auto;
-}
+
 .white-on-black {
   background-color: black;
   color:white;
@@ -71,15 +65,12 @@ html, body {
 .day {
 	border: solid 1px black;
 	border-radius: 4px;
-	padding: 0px;
 	background: -webkit-radial-gradient(circle, #D6D6D6, #FFFFFF);
-	margin-right:0.5em;
 	text-align: center;
 	color:gray;
 	header, footer {
       @extend .white-on-black;
 	}
-
     .fa-plus-circle {
       @include glyph-icons(6px);
       &:hover {
