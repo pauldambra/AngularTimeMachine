@@ -1,11 +1,52 @@
+$blue: #2350a2;
+$lightBlue: #7796d1;
+//$darkerBlue: #5681d1;
+//$darkBlue:#324b7a;
+//$darkestBlue:#0b2d69;
+//$green:#14988a;
+//$lightGreen:#6acbc1;
+//$darkerGreen:#47cbbd;
+//$darkGreen:#28726a;
+//$darkestGreen:#066359;
+//$yellow:#f4aa20;
+//$lightYellow:#fad082;
+//$darkerYellow:#fac057;
+//$darkYellow:#b78d40;
+//$darkestYellow:#9f6b0a;
+$apadmiOrange: #f47a20;
+//$lightOrange: #fa9587;
+//$darkerOrange: #fab582;
+//$lightBrown: #b77240;
+//$darkerBrown: #9f490a;
+
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
   display: none !important;
 }
 
 body {
-    margin-top: 1em;
+  background-color: #fafafa;
+  font-family: 'Open sans';
+  margin-top: 1em;
+
   @media screen and (max-width: 768px) {
     padding-top: 0;
+  }
+}
+
+.navbar {
+  h1 {
+    margin-left: 5em;
+    color:$blue;
+  }
+  .navbar-inner {
+    background-color: $apadmiOrange;
+    border-top: 1px solid #f5af7a;
+    border-bottom: 1px solid #b75d07;
+    a.brand {
+      color: white;
+      text-shadow: 0 0;
+    }
+    background-image: none;
   }
 }
 
@@ -35,23 +76,11 @@ body {
 	}
 }
 
-.navbar {
-	h1 {
-		margin-left: 5em;
-		color:white;
-	}
-	.navbar-inner {
-		a.brand {
-			margin-left: 9em;
-		}
-	}
-}
-
 .white-on-black {
   background-color: black;
   color:white;
   font-weight: bolder;
-  text-align: -webkit-center;
+  text-align: center;
   height: 2em;
   line-height: 2em;
 }
@@ -74,7 +103,7 @@ body {
     .fa-plus-circle {
       @include glyph-icons(6px);
       &:hover {
-        color:paleturquoise;
+        color:$lightBlue;
       }
     }
 	&:last-child{
@@ -106,17 +135,22 @@ body {
       .fa-pencil-square-o {
         margin-right:4px;
         &:hover {
-          color:paleturquoise;
+          color:$lightBlue;
         }
       }
 	}
 }
 .week-summary {
   margin-top: 1em;
+  text-align: left;
+  div {
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
   .fa {
     @include glyph-icons(6px);
     &:hover {
-      color:paleturquoise;
+      color:$lightBlue;
     }
   }
 }
