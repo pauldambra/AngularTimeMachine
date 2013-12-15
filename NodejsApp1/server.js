@@ -66,7 +66,6 @@ app.delete('/projects', function(req, res) {
   if (req.body) {
     if (req.body.hasOwnProperty('name')) {
       var newProject = {name: req.body.name};
-      console.log(newProject);
       db.projects.remove(newProject, function(err, affected) {
         res.send(200, {deleted:affected});
       });
