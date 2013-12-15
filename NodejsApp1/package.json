@@ -9,9 +9,28 @@
     "grunt-contrib-sass": "~0.5.1",
     "grunt-contrib-watch": "~0.5.3",
     "moment": "~2.4.0",
-    "connect": "~2.11.1"
+    "connect": "~2.11.1",
+    "express": "~3.4.7",
+    "mongojs": "~0.9.9"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "mocha": "~1.15.1",
+    "should": "~2.1.1",
+    "proxyquire": "~0.5.1",
+    "karma-script-launcher": "~0.1.0",
+    "karma-chrome-launcher": "~0.1.1",
+    "karma-html2js-preprocessor": "~0.1.0",
+    "karma-firefox-launcher": "~0.1.2",
+    "karma-jasmine": "~0.1.4",
+    "requirejs": "~2.1.9",
+    "karma-requirejs": "~0.2.0",
+    "karma-coffee-preprocessor": "~0.1.1",
+    "karma-phantomjs-launcher": "~0.1.1",
+    "karma": "~0.10.8",
+    "karma-mocha": "~0.1.1",
+    "karma-safari-launcher": "~0.1.1",
+    "supertest": "~0.8.2"
+  },
   "scripts": {
     "test": "test"
   },
