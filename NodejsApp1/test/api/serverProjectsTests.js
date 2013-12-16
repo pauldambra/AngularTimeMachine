@@ -1,6 +1,6 @@
 var request = require('supertest');
-var app = require('../server').application;
-var db = require('../api/mongo').database;
+var app = require('../../server').application;
+var db = require('../../api/mongo').database;
 
 describe('the server', function() {
   beforeEach(function() {

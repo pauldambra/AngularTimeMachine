@@ -1,6 +1,6 @@
 var request = require('supertest');
-var app = require('../server').application;
-var db = require('../api/mongo').database;
+var app = require('../../server').application;
+var db = require('../../api/mongo').database;
 var should = require('should');
 var dateArray = [];
 
