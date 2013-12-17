@@ -1,4 +1,4 @@
-angular.module('ProjectAggregator', ['TimeDifference'])
+angular.module('timeMachine.services', [])
   .service('projectAggregator', function(timeDifference) {
     var flattenedDayParts = function(arr) {
       return _.flatten(_.map(arr, function(day) { return day.parts;}))

@@ -3,8 +3,7 @@ window.timeMachine = angular.module('timeMachine',
       'ui.bootstrap',
       'DayStorage',
       'DayUtilities',
-      'TimeDifference',
-      'ProjectAggregator',
+      'timeMachine.services',
        'ProjectNameStorage',
       'timeMachine.filters'
     ]);

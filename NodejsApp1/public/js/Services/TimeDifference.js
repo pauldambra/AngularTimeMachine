@@ -1,8 +1,10 @@
-angular.module('TimeDifference', [])
+angular.module('timeMachine.services', [])
     .service('timeDifference', function() {
         return {
             calculate: function(start, finish) {
-                return (new Date(finish) - new Date(start)) / 36e5 || -1;
+                return (!start || ! finish)
+                    ? -1
+                    : (new Date(finish) - new Date(start)) / 36e5 || -1;
             }
         };
     });
