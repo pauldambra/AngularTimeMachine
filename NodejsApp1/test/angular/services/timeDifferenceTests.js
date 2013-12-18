@@ -3,7 +3,7 @@ var should = chai.should();
 describe("The time difference service", function() {
 
   beforeEach(function() {
-    module('timeMachine.services');
+    module('timeMachine.services.time');
   });
 
   it('should be able to inject the service', inject(function(timeDifference) {

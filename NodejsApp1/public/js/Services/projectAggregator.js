@@ -1,5 +1,5 @@
-angular.module('timeMachine.services', [])
-  .service('projectAggregator', function(timeDifference) {
+angular.module('timeMachine.services.projects', ['timeMachine.services.time'])
+  .service('projectsService', function(timeDifference) {
     var flattenedDayParts = function(arr) {
       return _.flatten(_.map(arr, function(day) { return day.parts;}))
     }
@@ -9,7 +9,8 @@ angular.module('timeMachine.services', [])
         var projects = _.groupBy(flattenedDayParts(days), 'projectName');
         var projectSums = _.map(projects, function(value, key) {
           var partsTotal = _.reduce(value, function(memo, part){
-            return memo + timeDifference.calculate(part.start, part.finish);
+            var calc = timeDifference.calculate(part.start, part.finish);
+            return calc == -1 ? memo : memo + calc;
           }, 0);
           return {project:key, total:partsTotal};
         });

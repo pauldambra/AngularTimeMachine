@@ -10,8 +10,8 @@ describe("The day controller", function() {
         'ui.bootstrap',
         'DayStorage',
         'DayUtilities',
-        'TimeDifference',
-        'ProjectAggregator',
+        'timeMachine.services.time',
+        'timeMachine.services.projects',
         'ProjectNameStorage',
         'timeMachine.filters'
       ]);
@@ -33,7 +33,7 @@ describe("The day controller", function() {
       $modal: {},
       dayStorage: mockDayStorage,
       dayUtilities: {},
-      projectAggregator: {
+      projectsService: {
         aggregate: function() {
           return ['summary'];
         }

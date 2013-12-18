@@ -1,4 +1,4 @@
-angular.module('timeMachine.services', [])
+angular.module('timeMachine.services.time', [])
     .service('timeDifference', function() {
         return {
             calculate: function(start, finish) {

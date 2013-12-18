@@ -31,7 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Gruntfile.js" />
-    <Compile Include="public\js\days.js" />
+    <Compile Include="public\js\app.js" />
     <Compile Include="public\js\libs\angular-local-storage.js" />
     <Compile Include="public\js\libs\angular.js" />
     <Compile Include="public\js\libs\bootstrap.js" />

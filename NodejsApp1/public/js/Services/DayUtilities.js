@@ -1,4 +1,4 @@
-angular.module('DayUtilities', ['timeMachine.services'])
+angular.module('timeMachine.services.days', ['timeMachine.services.time'])
     .service('dayUtilities', function(timeDifference) {
         var calculateDifference = function(part) {
             return timeDifference.calculate(part.start, part.finish);

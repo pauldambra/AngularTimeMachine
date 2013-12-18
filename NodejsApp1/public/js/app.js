@@ -2,17 +2,18 @@ window.timeMachine = angular.module('timeMachine',
     [
       'ui.bootstrap',
       'DayStorage',
-      'DayUtilities',
-      'timeMachine.services',
+      'timeMachine.services.days',
+      'timeMachine.services.time',
+      'timeMachine.services.projects',
        'ProjectNameStorage',
       'timeMachine.filters'
     ]);
 
-function DaysCtrl($scope,  $modal, dayStorage, dayUtilities, projectAggregator) {
+function DaysCtrl($scope,  $modal, dayStorage, dayUtilities, projectsService) {
     var setFocusMonday = function(focus) {
         $scope.focusMonday = focus.hours(0).minutes(0).seconds(0).milliseconds(0);
         $scope.days = dayStorage.getWeek(focus).days;
-        $scope.weekSummary = projectAggregator.aggregate($scope.days);
+        $scope.weekSummary = projectsService.aggregate($scope.days);
     };
 
     setFocusMonday($scope.focusMonday || moment().day('monday'));
@@ -49,7 +50,7 @@ function DaysCtrl($scope,  $modal, dayStorage, dayUtilities, projectAggregator) 
         var partIndex = $scope.days[dayIndex].parts.indexOf(part);
         $scope.days[dayIndex].parts.splice(partIndex,1);
         dayStorage.saveDay($scope.days[dayIndex]);
-        $scope.weekSummary = projectAggregator.aggregate($scope.days);
+        $scope.weekSummary = projectsService.aggregate($scope.days);
     };
 
     $scope.addDayPart = function (targetDay) {
@@ -68,7 +69,7 @@ function DaysCtrl($scope,  $modal, dayStorage, dayUtilities, projectAggregator) 
 
         modalInstance.result.then(
           function() {
-            $scope.weekSummary = projectAggregator.aggregate($scope.days);
+            $scope.weekSummary = projectsService.aggregate($scope.days);
           }
         );
     };
@@ -89,7 +90,7 @@ function DaysCtrl($scope,  $modal, dayStorage, dayUtilities, projectAggregator) 
 
       modalInstance.result.then(
         function() {
-          $scope.weekSummary = projectAggregator.aggregate($scope.days);
+          $scope.weekSummary = projectsService.aggregate($scope.days);
         }
       );
     };
