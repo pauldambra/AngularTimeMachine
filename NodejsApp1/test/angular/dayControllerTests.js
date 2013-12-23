@@ -18,10 +18,11 @@ describe("The day controller", function() {
   });
 
   mockDayStorage = {
-    getWeek: function(i){
+    getWeek: function(){
       return {days:[]};
     }
-  }
+  };
+
   beforeEach(inject(function($rootScope, $controller) {
     //create a scope object for us to use.
     $scope = $rootScope.$new();
