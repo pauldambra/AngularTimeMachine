@@ -28,7 +28,7 @@ angular.module('DayStorage', ['LocalStorageModule'])
 
 Day = function(dayDate) {
     return   {
-        date: dayDate.hours(0).minutes(0).seconds(0).milliseconds(0).toDate(),
+        date: moment(dayDate).hours(0).minutes(0).seconds(0).milliseconds(0).toDate(),
         parts: []
     }
 };
