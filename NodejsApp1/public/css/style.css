@@ -98,3 +98,6 @@ body {
     cursor: pointer; }
     .week-summary .fa:hover {
       color: #7796d1; }
+
+.selectedFilter {
+  color: #7796d1; }

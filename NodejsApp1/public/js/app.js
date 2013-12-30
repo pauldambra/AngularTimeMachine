@@ -6,14 +6,30 @@ window.timeMachine = angular.module('timeMachine',
       'timeMachine.services.time',
       'timeMachine.services.projects',
        'ProjectNameStorage',
-      'timeMachine.filters'
+      'timeMachine.filters',
+      'timeMachine.directives'
     ]);
 
 function DaysCtrl($scope,  $modal, dayStorage, dayUtilities, projectsService) {
-    var setFocusMonday = function(focus) {
+  $scope.useHalfDayAggregate = false;
+
+  function generateWeekSummary() {
+    $scope.weekSummary = $scope.useHalfDayAggregate
+                          ? projectsService.halfDayAggregate($scope.days)
+                          : projectsService.aggregate($scope.days);
+  }
+
+  $scope.$watch('days', function() {
+    generateWeekSummary();
+  });
+
+  $scope.$watch('useHalfDayAggregate', function() {
+    generateWeekSummary();
+  });
+
+  var setFocusMonday = function(focus) {
         $scope.focusMonday = focus.hours(0).minutes(0).seconds(0).milliseconds(0);
         $scope.days = dayStorage.getWeek(focus).days;
-        $scope.weekSummary = projectsService.aggregate($scope.days);
     };
 
     setFocusMonday($scope.focusMonday || moment().day('monday'));
@@ -42,7 +58,13 @@ function DaysCtrl($scope,  $modal, dayStorage, dayUtilities, projectsService) {
     }
 
     $scope.weekTotal = function() {
-        return dayUtilities.weekTotal($scope.days);
+      if ($scope.weekSummary.length == 0) {
+        return 0;
+      }
+      console.log($scope.weekSummary);
+      return _.reduce($scope.weekSummary, function(memo, part){
+        return memo + part.total;
+      }, 0);
     }
 
     $scope.deleteDayPart = function(day, part) {
@@ -50,7 +72,6 @@ function DaysCtrl($scope,  $modal, dayStorage, dayUtilities, projectsService) {
         var partIndex = $scope.days[dayIndex].parts.indexOf(part);
         $scope.days[dayIndex].parts.splice(partIndex,1);
         dayStorage.saveDay($scope.days[dayIndex]);
-        $scope.weekSummary = projectsService.aggregate($scope.days);
     };
 
     $scope.addDayPart = function (targetDay) {
@@ -67,11 +88,11 @@ function DaysCtrl($scope,  $modal, dayStorage, dayUtilities, projectsService) {
             }
         });
 
-        modalInstance.result.then(
-          function() {
-            $scope.weekSummary = projectsService.aggregate($scope.days);
-          }
-        );
+//        modalInstance.result.then(
+//          function() {
+//            generateWeekSummary();
+//          }
+//        );
     };
 
     $scope.editDayPart = function (targetDay, targetDayPart) {
@@ -88,11 +109,9 @@ function DaysCtrl($scope,  $modal, dayStorage, dayUtilities, projectsService) {
             }
         });
 
-      modalInstance.result.then(
-        function() {
-          $scope.weekSummary = projectsService.aggregate($scope.days);
-        }
-      );
+//      modalInstance.result.then(
+//          generateWeekSummary()
+//      );
     };
 }
 

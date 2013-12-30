@@ -45,6 +45,7 @@ describe("The day controller", function() {
   it('should start with defaults populated', function() {
     $scope.focusMonday.should.not.equal(undefined);
     $scope.days.should.eql([]);
+    $scope.$digest(); //week summary relies on digest cycle
     $scope.weekSummary.should.eql(['summary']);
   });
 });

@@ -20,9 +20,9 @@
     <div ng-controller="DaysCtrl">
         <div class="row-fluid">
             <div class="span12 offset1" id="focused-week">
-                <button class="date-arrow arrow-left" ng-click="backAWeek()"></button>
+                <button make-unselectable class="date-arrow arrow-left" ng-click="backAWeek()"></button>
                 <h4>week commencing {{focusMonday.toDate() | date:dd-mm-yy}}</h4>
-                <button class="date-arrow arrow-right" ng-click="forwardAWeek()"></button>
+                <button make-unselectable class="date-arrow arrow-right" ng-click="forwardAWeek()"></button>
             </div>
         </div>
         <div class="row-fluid days">
@@ -47,7 +47,9 @@
             <div class="span5 offset6 day week-summary">
                 <header>
                     Week Summary
-                    <i class="fa fa-filter pull-right"></i>
+                    <i class="fa fa-filter pull-right"
+                       ng-click="useHalfDayAggregate = !useHalfDayAggregate"
+                       ng-class="{selectedFilter: useHalfDayAggregate}"></i>
                 </header>
                 <div ng-repeat="item in weekSummary">
                     <strong>{{item.project}}: </strong>{{item.total | hours}}
@@ -74,6 +76,7 @@
 <script src="js/services/projectAggregator.js"></script>
 <script src="js/services/projectNameStorage.js"></script>
 <script src="js/filters/hoursFilter.js"></script>
+<script src="js/directives/unselectableDirective.js"></script>
 <script src="js/app.js"></script>
 
 </body>
