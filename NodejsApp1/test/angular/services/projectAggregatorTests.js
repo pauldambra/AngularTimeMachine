@@ -68,7 +68,7 @@ describe("The project aggregator service", function() {
       results.should.eql(expectedResult);
     }
 
-    it('should ignore values below 1 hour 30', inject(function(projectsService) {
+    it('should ignore values below 2 hours', inject(function(projectsService) {
       var dayA = {
         parts: [
           {
@@ -79,7 +79,7 @@ describe("The project aggregator service", function() {
           {
             projectName:"one",
             start: new Date('2013-05-12T00:00:00.000Z'),
-            finish: new Date('2013-05-12T00:30:00.000Z')
+            finish: new Date('2013-05-12T00:59:00.000Z')
           }]};
       testHalfDayAggregation(projectsService, [dayA], 0, []);
     }));
@@ -95,7 +95,7 @@ describe("The project aggregator service", function() {
           {
             projectName:"one",
             start: new Date('2013-05-12T00:00:00.000Z'),
-            finish: new Date('2013-05-12T00:55:00.000Z')
+            finish: new Date('2013-05-12T01:00:00.000Z')
           }]};
       testHalfDayAggregation(projectsService, [dayA], 1, [{project:'one', total:3.5}]);
 

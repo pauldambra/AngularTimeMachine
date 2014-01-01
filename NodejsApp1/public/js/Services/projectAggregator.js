@@ -23,6 +23,10 @@ angular.module('timeMachine.services.projects', ['timeMachine.services.time'])
       var results = [];
       for(var i = 0, len = parts.length; i < len; i++) {
         var thisPart = parts[i];
+          if(thisPart.total < 2) {
+              continue;
+          }
+
         var halfDays = thisPart.total / 3.5;
         var halfDays = Math.round(halfDays) * 3.5;
         if (halfDays != 0) {

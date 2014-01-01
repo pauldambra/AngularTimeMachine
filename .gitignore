@@ -17,3 +17,5 @@ node_modules
 *.scssc
 
 NodejsApp1/.idea/workspace.xml
+
+NodejsApp1/.idea/watcherTasks.xml
