@@ -16,5 +16,5 @@ node_modules
 
 *.scssc
 
-NodejsApp1/.idea/
+.idea/
 .sass-cache/
